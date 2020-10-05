@@ -1,0 +1,28 @@
+-Q theories mwp
+-arg -w -arg -notation-overridden
+-arg -w -arg -redundant-canonical-projection
+-arg -w -arg -convert_concl_no_check
+-arg -w -arg -undeclared-scope
+-arg -w -arg -ambiguous-paths
+-arg -w -arg -ssr-search-moved
+
+theories/prelude/reduction.v
+theories/prelude/base.v
+theories/modalities/future.v
+theories/mwp.v
+theories/mwp_triple.v
+theories/mwp_adequacy.v
+theories/mwp_lifting.v
+theories/mwp_modalities/mwp_fupd.v
+theories/mwp_modalities/mwp_step_fupd.v
+theories/mwp_modalities/mwp_future.v
+theories/mwp_modalities/mwp_bupd.v
+theories/mwp_modalities/mwp_id.v
+theories/mwp_modalities/mwp_laterN.v
+theories/mwp_modalities/mwp_indexed_step_fupd.v
+theories/mwp_modalities/mwp_mwp_ISF.v
+theories/mwp_modalities/ni_logrel/mwp_right.v
+theories/mwp_modalities/ni_logrel/mwp_left.v
+theories/mwp_modalities/ni_logrel/ni_logrel_lemmas.v
+theories/mwp_modalities/ni_logrel/mwp_logrel_fupd.v
+theories/mwp_modalities/ni_logrel/ni_logrel_fupd_lemmas.v
