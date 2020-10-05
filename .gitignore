@@ -36,6 +36,7 @@ Makefile.coq.conf
 CoqMakefile.conf
 Makefile.coq
 build-dep/
+html/
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -115,3 +116,4 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+

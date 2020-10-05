@@ -1,3 +1,13 @@
+EXTRA_DIR:=extra
+COQDOCFLAGS:= \
+  --external 'http://ssr2.msr-inria.inria.fr/doc/ssreflect-1.5/' Ssreflect \
+  --external 'http://ssr2.msr-inria.inria.fr/doc/mathcomp-1.5/' MathComp \
+  --toc --toc-depth 2 --html --interpolate \
+  --index indexpage --no-lib-name --parse-comments \
+  --with-header $(EXTRA_DIR)/header.html --with-footer $(EXTRA_DIR)/footer.html
+export COQDOCFLAGS
+DOCKER_IMAGE:=simongregersen/modal-weakestpre
+
 all: Makefile.coq
 	+make -f Makefile.coq all
 
@@ -5,13 +15,17 @@ clean: Makefile.coq
 	+make -f Makefile.coq clean
 	rm -f Makefile.coq
 
+html: all	
+	rm -fr html
+	+make -f Makefile.coq $@
+	cp $(EXTRA_DIR)/resources/* html
+
 Makefile.coq: _CoqProject
 	coq_makefile -f _CoqProject -o Makefile.coq
 
 %: Makefile.coq
 	+make -f Makefile.coq $@
 
-# Install build-dependencies
 build-dep/opam: modal-weakestpre.opam Makefile
 	@echo "# Creating build-dep package."
 	@mkdir -p build-dep
@@ -36,11 +50,11 @@ build-dep: build-dep/opam phony
 docker-build-deps:
 	docker build \
 		--build-arg=NJOBS=4 \
-		--tag simongregersen/modal-weakestpre:latest \
+		--tag $(DOCKER_IMAGE):latest \
 		--file Dockerfile.deps .
 
 docker-push-deps:
-	docker push simongregersen/modal-weakestpre:latest
+	docker push $(DOCKER_IMAGE):latest
 
 docker-build:
 	docker build \
