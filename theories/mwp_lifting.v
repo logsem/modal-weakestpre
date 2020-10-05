@@ -61,7 +61,7 @@ Proof.
   by rewrite (Hpr _ _ _ Hpstp).
 Qed.
 
-Lemma mwp_lift_atommwp_step E Φ e1 :
+Lemma mwp_lift_atomic_step E Φ e1 :
   Atomic StronglyAtomic e1 →
   to_val e1 = None →
   (∀ σ1, mwpC_state_interp mwpd σ1 -∗
@@ -86,7 +86,7 @@ Proof.
   by iApply mwp_value.
 Qed.
 
-Lemma mwp_lift_atommwp_det_step E Φ e1 :
+Lemma mwp_lift_atomic_det_step E Φ e1 :
   Atomic StronglyAtomic e1 →
   to_val e1 = None →
   (∀ σ1, mwpC_state_interp mwpd σ1 -∗
@@ -99,7 +99,7 @@ Lemma mwp_lift_atommwp_det_step E Φ e1 :
                                mwpC_modality mwpd idx E 0 (λ x, Φ v2 1 x))))
     ⊢ MWP@{mwpd, idx} e1 @ E {{ Φ }}.
 Proof.
-  iIntros (Hatomic Hnv) "H". iApply (mwp_lift_atommwp_step); first done.
+  iIntros (Hatomic Hnv) "H". iApply (mwp_lift_atomic_step); first done.
   iIntros (σ1) "Ho"; iSpecialize ("H" $! _ with "Ho").
   iApply mwpM_split_for_step_M1_mono; iFrame.
   iDestruct 1 as (v2 σ2 Hdet) "H".
@@ -240,7 +240,7 @@ Proof.
   iIntros (????). iApply "H"; eauto.
 Qed.
 
-Lemma mwp_lift_atommwp_head_step E Φ e1:
+Lemma mwp_lift_atomic_head_step E Φ e1:
   to_val e1 = None →
   sub_redexes_are_values e1 →
   Atomic StronglyAtomic e1 →
@@ -253,7 +253,7 @@ Lemma mwp_lift_atommwp_head_step E Φ e1:
             mwpC_modality mwpd idx E 0 (λ x, Φ v2 1 x))))
     ⊢ MWP@{mwpd, idx} e1 @ E {{ Φ }}.
 Proof.
-  iIntros (???) "H". iApply (mwp_lift_atommwp_step mwpd); first done.
+  iIntros (???) "H". iApply (mwp_lift_atomic_step mwpd); first done.
   iIntros (σ1) "Ho".
   iSpecialize ("H" with "Ho").
   iApply mwpM_split_for_step_M1_mono; iFrame.
@@ -322,7 +322,7 @@ Lemma mwp_lift_pure_head_step' E Φ e1 :
   ⊢ MWP@{mwpd, idx} e1 @ E {{ Φ }}.
 Proof. iIntros (???); iApply mwp_lift_pure_head_step; eauto. Qed.
 
-Lemma mwp_lift_atommwp_head_step' E Φ e1:
+Lemma mwp_lift_atomic_head_step' E Φ e1:
   to_val e1 = None →
   (∀ Ki e', e1 = fill_item Ki e' → is_Some (to_val e')) →
   Atomic StronglyAtomic e1 →
@@ -333,7 +333,7 @@ Lemma mwp_lift_atommwp_head_step' E Φ e1:
            -∗ mwpM_split_for_step_M2 E
            (mwpC_state_interp mwpd σ2 ∗ mwpC_modality mwpd idx E 0 (λ x, Φ v2 1 x))))
     ⊢ MWP@{mwpd, idx} e1 @ E {{ Φ }}.
-Proof. iIntros (???); iApply mwp_lift_atommwp_head_step; eauto. Qed.
+Proof. iIntros (???); iApply mwp_lift_atomic_head_step; eauto. Qed.
 
 Lemma mwp_lift_pure_det_head_step' E Φ e1 e2 :
   to_val e1 = None →

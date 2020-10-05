@@ -48,7 +48,7 @@ Section ni_logrel_lemmas.
     iModIntro; iFrame.
   Qed.
 
-  Lemma mwp_double_atommwp_lr a E1 E2 e e' Φ `{!Atomic a e, !Atomic a e'} :
+  Lemma mwp_double_atomic_lr a E1 E2 e e' Φ `{!Atomic a e, !Atomic a e'} :
     (|={E1,E2}=>
      MWP@{mwpd_step_fupd mwpD_SI} e @ E2
        {{ v; m,
@@ -105,7 +105,7 @@ Section ni_logrel_lemmas.
         iFrame.
   Qed.
 
-  Lemma mwp_double_atommwp_rl a E1 E2 e e' Φ `{!Atomic a e, !Atomic a e'} :
+  Lemma mwp_double_atomic_rl a E1 E2 e e' Φ `{!Atomic a e, !Atomic a e'} :
     (|={E1,E2}=>
      MWP@{mwpd_step_fupd mwpD_SI'} e' @ E2
        {{ v; m,

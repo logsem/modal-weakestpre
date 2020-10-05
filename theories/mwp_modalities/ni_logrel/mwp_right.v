@@ -211,7 +211,7 @@ Proof.
   by iApply step_fupd_intro; first set_solver.
 Qed.
 
-Lemma mwp_right_lift_atommwp_step E Φ e1 n:
+Lemma mwp_right_lift_atomic_step E Φ e1 n:
   to_val e1 = None →
   Atomic StronglyAtomic e1 →
    (∀ σ1, mwpD_SI σ1 ={E, ∅}=∗
@@ -221,10 +221,10 @@ Lemma mwp_right_lift_atommwp_step E Φ e1 n:
     ⊢ MWP@{mwpd_right mwpD_SI, n} e1 @ E {{ λ v n _, Φ v n }}.
 Proof.
   iIntros (??).
-  by iApply (mwp_lift_atommwp_step (mwpd_right mwpD_SI) n E (λ v n _, Φ v n) e1).
+  by iApply (mwp_lift_atomic_step (mwpd_right mwpD_SI) n E (λ v n _, Φ v n) e1).
 Qed.
 
-Lemma mwp_right_lift_atommwp_det_step E Φ e1 n :
+Lemma mwp_right_lift_atomic_det_step E Φ e1 n :
   to_val e1 = None →
   Atomic StronglyAtomic e1 →
   (∀ σ1, mwpD_SI σ1 ={E, ∅}=∗
@@ -235,7 +235,7 @@ Lemma mwp_right_lift_atommwp_det_step E Φ e1 n :
     ⊢ MWP@{mwpd_right mwpD_SI, n} e1 @ E {{ λ v n _, Φ v n }}.
 Proof.
   by iIntros (??);
-    iApply (mwp_lift_atommwp_det_step (mwpd_right mwpD_SI) _ E (λ v n _, Φ v n) e1).
+    iApply (mwp_lift_atomic_det_step (mwpd_right mwpD_SI) _ E (λ v n _, Φ v n) e1).
 Qed.
 
 Lemma mwp_right_lift_pure_det_step  E Φ e1 e2 k :
@@ -307,7 +307,7 @@ Proof.
   by iApply step_fupd_intro; first set_solver.
 Qed.
 
-Lemma mwp_right_lift_atommwp_head_step  E Φ e1 n:
+Lemma mwp_right_lift_atomic_head_step  E Φ e1 n:
   to_val e1 = None →
   sub_redexes_are_values e1 →
   Atomic StronglyAtomic e1 →
@@ -318,7 +318,7 @@ Lemma mwp_right_lift_atommwp_head_step  E Φ e1 n:
      ⊢ MWP@{mwpd_right mwpD_SI, n} e1 @ E {{ λ v n _, Φ v n }}.
 Proof.
   by intros;
-    iApply (mwp_lift_atommwp_head_step
+    iApply (mwp_lift_atomic_head_step
               (mwpd_right mwpD_SI) _ E (λ v n _, Φ v n) e1).
 Qed.
 
@@ -378,7 +378,7 @@ Proof.
   simpl. by iApply step_fupd_intro; first set_solver.
 Qed.
 
-Lemma mwp_right_lift_atommwp_head_step'  E Φ e1 n:
+Lemma mwp_right_lift_atomic_head_step'  E Φ e1 n:
   to_val e1 = None →
   (∀ Ki e', e1 = fill_item Ki e' → is_Some (to_val e')) →
   Atomic StronglyAtomic e1 →
@@ -389,7 +389,7 @@ Lemma mwp_right_lift_atommwp_head_step'  E Φ e1 n:
     ⊢ MWP@{mwpd_right mwpD_SI, n} e1 @ E {{ λ v n _, Φ v n }}.
 Proof.
   iIntros (???).
-  by iApply (mwp_lift_atommwp_head_step'
+  by iApply (mwp_lift_atomic_head_step'
                (mwpd_right mwpD_SI) _ E (λ v n _, Φ v n) e1).
 Qed.
 

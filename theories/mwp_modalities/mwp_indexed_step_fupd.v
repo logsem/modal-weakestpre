@@ -232,7 +232,7 @@ Proof.
   by iApply fupd_intro_mask; first set_solver.
 Qed.
 
-Lemma mwp_indexed_step_fupd_lift_atommwp_step idx E Φ e1 :
+Lemma mwp_indexed_step_fupd_lift_atomic_step idx E Φ e1 :
   to_val e1 = None →
   Atomic StronglyAtomic e1 →
    (∀ σ1, mwpD_SI σ1 ={E, ∅}=∗
@@ -242,11 +242,11 @@ Lemma mwp_indexed_step_fupd_lift_atommwp_step idx E Φ e1 :
     ⊢ MWP@{mwpd_indexed_step_fupd mwpD_SI, idx } e1 @ E {{ λ v n _, Φ v n }}.
 Proof.
   iIntros (??).
-  by iApply (mwp_lift_atommwp_step
+  by iApply (mwp_lift_atomic_step
                (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1).
 Qed.
 
-Lemma mwp_indexed_step_fupd_lift_atommwp_det_step idx E Φ e1 :
+Lemma mwp_indexed_step_fupd_lift_atomic_det_step idx E Φ e1 :
   to_val e1 = None →
   Atomic StronglyAtomic e1 →
   (∀ σ1, mwpD_SI σ1 ={E, ∅}=∗
@@ -257,7 +257,7 @@ Lemma mwp_indexed_step_fupd_lift_atommwp_det_step idx E Φ e1 :
     ⊢ MWP@{mwpd_indexed_step_fupd mwpD_SI, idx } e1 @ E {{ λ v n _, Φ v n }}.
 Proof.
   by iIntros (??);
-  iApply (mwp_lift_atommwp_det_step
+  iApply (mwp_lift_atomic_det_step
             (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1).
 Qed.
 
@@ -335,7 +335,7 @@ Proof.
   by iApply fupd_intro_mask; first set_solver.
 Qed.
 
-Lemma mwp_indexed_step_fupd_lift_atommwp_head_step idx E Φ e1 :
+Lemma mwp_indexed_step_fupd_lift_atomic_head_step idx E Φ e1 :
   to_val e1 = None →
   sub_redexes_are_values e1 →
   Atomic StronglyAtomic e1 →
@@ -346,7 +346,7 @@ Lemma mwp_indexed_step_fupd_lift_atommwp_head_step idx E Φ e1 :
      ⊢ MWP@{mwpd_indexed_step_fupd mwpD_SI, idx } e1 @ E {{ λ v n _, Φ v n }}.
 Proof.
   by intros;
-    iApply (mwp_lift_atommwp_head_step
+    iApply (mwp_lift_atomic_head_step
               (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1).
 Qed.
 
@@ -409,7 +409,7 @@ Proof.
   simpl. by iApply fupd_intro_mask; first set_solver.
 Qed.
 
-Lemma mwp_indexed_step_fupd_lift_atommwp_head_step' idx E Φ e1:
+Lemma mwp_indexed_step_fupd_lift_atomic_head_step' idx E Φ e1:
   to_val e1 = None →
   (∀ Ki e', e1 = fill_item Ki e' → is_Some (to_val e')) →
   Atomic StronglyAtomic e1 →
@@ -420,7 +420,7 @@ Lemma mwp_indexed_step_fupd_lift_atommwp_head_step' idx E Φ e1:
     ⊢ MWP@{mwpd_indexed_step_fupd mwpD_SI, idx } e1 @ E {{ λ v n _, Φ v n }}.
 Proof.
   iIntros (???).
-  by iApply (mwp_lift_atommwp_head_step'
+  by iApply (mwp_lift_atomic_head_step'
                (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1).
 Qed.
 

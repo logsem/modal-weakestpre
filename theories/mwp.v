@@ -667,7 +667,7 @@ Proof.
   iSpecialize ("H" with "[] Hsi"); by eauto.
 Qed.
 
-Lemma mwp_atommwp `{!invG Σ} idx `{!mwpMSupportsAtomicShift mwpd idx}
+Lemma mwp_atomic `{!invG Σ} idx `{!mwpMSupportsAtomicShift mwpd idx}
       a E1 E2 e Φ `{!Atomic a e} :
   (|={E1,E2}=> MWP@{mwpd, idx} e @ E2 {{ v; n | [x], |={E2,E1}=> Φ v n x }})
   ⊢ MWP@{mwpd, idx} e @ E1 {{ Φ }}.
