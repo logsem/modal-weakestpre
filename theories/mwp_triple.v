@@ -1,5 +1,4 @@
 From mwp Require Export mwp.
-From iris.base_logic.lib Require Export viewshifts.
 From iris.proofmode Require Import tactics.
 
 Definition ictr {Λ Σ} (mwpd: mwpData Λ Σ) `{!mwpC mwpd} idx (E : coPset) (P : iProp Σ)
@@ -565,18 +564,6 @@ Proof.
   iApply mwpC_modality_mono; last done; eauto.
 Qed.
 
-Lemma ictr_vs
-      `{!invG Σ} idx `{!mwpMIsOuterModal mwpd idx (λ E n P, |={E}=> P)%I}
-      `{!mwpMIsInnerModal mwpd idx (λ E n P, |={E}=> P)%I} E P P' Φ Φ' e :
-  (P ={E}=> P') ∧ {{| P' |}}@{mwpd, idx} e @ E {{| Φ' |}}
-  ∧ (∀ v n x, Φ' v n x ={E}=> Φ v n x)
-  ⊢ {{| P |}}@{mwpd, idx} e @ E {{| Φ |}}.
-Proof.
-  iIntros "(#Hvs & #Hic & #HΦ) !# HP". iMod ("Hvs" with "HP") as "HP".
-  iApply mwp_fupd. iApply mwp_wand_r; iSplitL; [by iApply "Hic"|].
-  iIntros (v n x) "Hv". by iApply "HΦ".
-Qed.
-
 Lemma ictr_bind `{LanguageCtx Λ K} idx idx' f g E P Φ Φ' e :
   mwpC_modality_bind_condition mwpd idx idx' f g →
   {{| P |}}@{mwpd, idx'} e @ E {{| Φ |}} ∧
@@ -595,7 +582,6 @@ Proof.
   iIntros (?) "#Hic !# HP". iApply (mwp_mask_mono _ _ E1 E2); try done.
   by iApply "Hic".
 Qed.
-
 
 Lemma ictr_frame_l idx E P Φ R e :
   {{| P |}}@{mwpd, idx} e @ E {{| Φ |}}

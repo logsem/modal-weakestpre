@@ -229,7 +229,7 @@ Proof.
   iApply (mwp_lift_pure_step
             (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1);
     simpl; eauto.
-  by iApply fupd_intro_mask; first set_solver.
+  by iApply fupd_mask_intro_subseteq; first set_solver.
 Qed.
 
 Lemma mwp_indexed_step_fupd_lift_atomic_step idx E Φ e1 :
@@ -271,7 +271,7 @@ Proof.
   iApply (mwp_lift_pure_det_step
             (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1);
     simpl; eauto.
-  by iApply fupd_intro_mask; first set_solver.
+  by iApply fupd_mask_intro_subseteq; first set_solver.
 Qed.
 
 Lemma mwp_indexed_step_fupd_pure_step `{!Inhabited (state Λ)} idx E e1 e2 φ n Φ :
@@ -285,7 +285,7 @@ Proof.
   iApply (mwp_pure_step (mwpd_indexed_step_fupd mwpD_SI) idx); eauto.
   clear Hexec.
   iInduction n as [] "IH" forall (Φ); simpl; auto.
-  iApply fupd_intro_mask; first set_solver.
+  iApply fupd_mask_intro_subseteq; first set_solver.
   iApply ("IH" $! (λ w k, Φ w (S k)) with "Hic").
 Qed.
 
@@ -332,7 +332,7 @@ Proof.
   iApply (mwp_lift_pure_head_step
             (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1);
     simpl; eauto.
-  by iApply fupd_intro_mask; first set_solver.
+  by iApply fupd_mask_intro_subseteq; first set_solver.
 Qed.
 
 Lemma mwp_indexed_step_fupd_lift_atomic_head_step idx E Φ e1 :
@@ -361,7 +361,7 @@ Proof.
   iApply (mwp_lift_pure_det_head_step
             (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1);
     simpl; eauto.
-  by iApply fupd_intro_mask; first set_solver.
+  by iApply fupd_mask_intro_subseteq; first set_solver.
 Qed.
 
 End mwp_ectx_lifting.
@@ -406,7 +406,7 @@ Proof.
   iIntros (???) "?".
   iApply (mwp_lift_pure_head_step'
             (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1); eauto.
-  simpl. by iApply fupd_intro_mask; first set_solver.
+  simpl. by iApply fupd_mask_intro_subseteq; first set_solver.
 Qed.
 
 Lemma mwp_indexed_step_fupd_lift_atomic_head_step' idx E Φ e1:
@@ -434,7 +434,7 @@ Proof.
   iIntros (???) "?".
   iApply (mwp_lift_pure_det_head_step'
             (mwpd_indexed_step_fupd mwpD_SI) idx E (λ v n _, Φ v n) e1); eauto.
-  simpl. by iApply fupd_intro_mask; first set_solver.
+  simpl. by iApply fupd_mask_intro_subseteq; first set_solver.
 Qed.
 
 End mwp_ectxi_lifting.

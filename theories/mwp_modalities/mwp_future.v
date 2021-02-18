@@ -152,7 +152,7 @@ Proof.
   iIntros(??) "H".
   iApply (mwp_lift_pure_step (mwpd_future mwpD_SI) _ E (λ v n _, Φ v n) e1);
     simpl; eauto.
-  iApply fupd_intro_mask; first set_solver.
+  iApply fupd_mask_intro_subseteq; first set_solver.
   by iNext; iModIntro.
  Qed.
 
@@ -193,7 +193,7 @@ Proof.
   iIntros(??) "H".
   iApply (mwp_lift_pure_det_step (mwpd_future mwpD_SI) _ E (λ v n _, Φ v n) e1);
     simpl; eauto.
-  iApply fupd_intro_mask; first set_solver.
+  iApply fupd_mask_intro_subseteq; first set_solver.
   by iNext; iModIntro.
 Qed.
 
@@ -207,7 +207,7 @@ Proof.
   iApply (mwp_pure_step (mwpd_future mwpD_SI) _); eauto.
   clear Hexec.
   iInduction n as [] "IH" forall (Φ); simpl; auto.
-  iApply fupd_intro_mask; first set_solver.
+  iApply fupd_mask_intro_subseteq; first set_solver.
   iNext. iModIntro.
   iApply ("IH" $! (λ w k, Φ w (S k)) with "Hic").
 Qed.
@@ -251,7 +251,7 @@ Proof.
   iIntros(???) "H".
   iApply (mwp_lift_pure_head_step (mwpd_future mwpD_SI) _ E (λ v n _, Φ v n) e1);
     simpl; eauto.
-  iApply fupd_intro_mask; first set_solver.
+  iApply fupd_mask_intro_subseteq; first set_solver.
   by iNext; iModIntro.
 Qed.
 
@@ -280,7 +280,7 @@ Proof.
   iIntros(???) "H".
   iApply (mwp_lift_pure_det_head_step
             (mwpd_future mwpD_SI) _ E (λ v n _, Φ v n) e1); simpl; eauto.
-  iApply fupd_intro_mask; first set_solver.
+  iApply fupd_mask_intro_subseteq; first set_solver.
   by iNext; iModIntro.
 Qed.
 
@@ -324,7 +324,7 @@ Proof.
   iIntros (???) "?".
   iApply (mwp_lift_pure_head_step'
             (mwpd_future mwpD_SI) _ E (λ v n _, Φ v n) e1); eauto.
-  simpl. iApply fupd_intro_mask; first set_solver.
+  simpl. iApply fupd_mask_intro_subseteq; first set_solver.
   by iNext; iModIntro.
 Qed.
 
@@ -353,7 +353,7 @@ Proof.
   iIntros (???) "?".
   iApply (mwp_lift_pure_det_head_step'
             (mwpd_future mwpD_SI) _ E (λ v n _, Φ v n) e1); eauto.
-  simpl. iApply fupd_intro_mask; first set_solver.
+  simpl. iApply fupd_mask_intro_subseteq; first set_solver.
   by iNext; iModIntro.
 Qed.
 

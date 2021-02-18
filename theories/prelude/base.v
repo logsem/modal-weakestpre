@@ -50,7 +50,7 @@ Section Lemmas.
   Proof.
     iIntros (?) "H".
     iInduction k as [] "IH"; simpl; first done.
-    iMod (fupd_intro_mask' E2 E1) as "Hcl"; first done.
+    iMod fupd_mask_subseteq as "Hcl"; first done.
     iMod "H"; iModIntro; iNext; iMod "H"; iMod "Hcl" as "_".
     iModIntro.
     by iApply "IH".
@@ -109,5 +109,5 @@ Section Lemmas.
 
 End Lemmas.
 
-Hint Extern 1 (StepFupdElimCond _ _) =>
+Global Hint Extern 1 (StepFupdElimCond _ _) =>
   rewrite /StepFupdElimCond; solve [done|lia] : typeclass_instances.

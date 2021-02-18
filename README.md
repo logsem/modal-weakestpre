@@ -14,8 +14,8 @@ details on the latter.
 
 The project is known to compile with:
 
-- Coq 8.12.0
-- Development versions of [Iris](https://gitlab.mpi-sws.org/iris/iris/) and
+- Coq 8.13.0
+- Versions of [Iris](https://gitlab.mpi-sws.org/iris/iris/) and
   [std++](https://gitlab.mpi-sws.org/iris/stdpp) as specified in the
   [modal-weakestpre.opam](modal-weakestpre.opam) file
 
@@ -41,14 +41,8 @@ your own developments.
 
 ### Using Docker
 The development can be built using
-[Docker](https://docs.docker.com/get-docker/). To speed up compilation time, the
-dependencies have been prepared and compiled separately in
-[Dockerfile.deps](Dockerfile.deps) and published in a Dockerhub
-[repository](https://hub.docker.com/repository/docker/simongregersen/modal-weakestpre). This
-image can be built locally by running `make docker-build-deps`.
-
-Run `make docker-build` to build [Dockerfile](Dockerfile) and the development
-with the pre-compiled dependencies.
+[Docker](https://docs.docker.com/get-docker/).
+Run `make docker-build` to build [Dockerfile](Dockerfile) and the development.
 
 ## Documentation
 

@@ -185,7 +185,7 @@ Section ni_logrel_lemmas.
         by rewrite to_of_val in Hred'. }
     iDestruct "H" as "[_ H]".
     iMod "H".
-    iMod (fupd_intro_mask' _ ∅) as "Hcl"; first set_solver.
+    iMod (fupd_mask_subseteq ∅) as "Hcl"; first set_solver.
     iModIntro.
     iNext.
     iSpecialize ("H" with "[] Ho"); first done.
